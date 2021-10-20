@@ -12,7 +12,10 @@ As per the above pipeline, we can divide our work in below steps:
     connector.class=io.confluent.connect.sftp.SftpJsonSourceConnector
   #### Other Connectors are:
   connector.class=io.confluent.connect.sftp.SftpCsvSourceConnector
-  value.converter=org.apache.kafka.connect.converters.ByteArrayConverter
+  ### S3 Sink Connector:
+    connector.class=io.confluent.connect.s3.s3sinkconnector
+  ### Worker Config:
+    Finally, we have to configure the Connect worker, which will integrate our two connectors and do the work of reading from the source connector and writing to the sink connector.
   
   
 ## 2. Reading Data from S3 bucket, process the data with spark on EMR and storing it back to S3.
