@@ -1,10 +1,10 @@
 #### Assuming Kafka cluster is properly configured.
 
-## Create Topic
+## 1. Create Topic
 
-## JSON Source Connector
+## 2. JSON Source Connector
     /etc/kafka/connect-file-source.properties 
-## S3 Sink Connector
+## 3. S3 Sink Connector
     /etc/kafka/connect-file-sink.properties 
-## Worker Config
+## 4. Worker Config
     /etc/kafka/connect-standalone.properties
