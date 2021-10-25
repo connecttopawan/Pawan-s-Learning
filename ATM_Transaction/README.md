@@ -29,3 +29,5 @@ As per the above pipeline, we can divide our work in below steps:
   Configure it with private key file.
   EMR will be launched.
   Run spark submit cmd.
+
+## 3. Copying data from S3 to AWS Redshift through AWS Glue. 
