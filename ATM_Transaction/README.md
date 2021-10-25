@@ -25,3 +25,7 @@ As per the above pipeline, we can divide our work in below steps:
   ### Create a pyspark code and store it to a S3 bucket.
   File Name: ATM-Transaction.py
   
+  ### Open putty and submit pyspark code here.
+  ##### Configure it with private key file.
+  ##### EMR will be launched.
+  ##### Run spark submit cmd.
