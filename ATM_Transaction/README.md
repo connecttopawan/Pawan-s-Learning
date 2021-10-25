@@ -19,3 +19,5 @@ As per the above pipeline, we can divide our work in below steps:
   
   
 ## 2. Reading Data from S3 bucket, process the data with spark on EMR and storing it back to S3.
+  ### Create S3 bucket to store processed data
+  We can create through aws management console or CLI. Here we are creating through CLI.
