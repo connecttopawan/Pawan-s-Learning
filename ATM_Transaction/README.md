@@ -26,6 +26,6 @@ As per the above pipeline, we can divide our work in below steps:
   File Name: ATM-Transaction.py
   
   ### Open putty and submit pyspark code here.
-  ##### Configure it with private key file.
-  ##### EMR will be launched.
-  ##### Run spark submit cmd.
+  Configure it with private key file.
+  EMR will be launched.
+  Run spark submit cmd.
