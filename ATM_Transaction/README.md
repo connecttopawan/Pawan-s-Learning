@@ -26,9 +26,9 @@ As per the above pipeline, we can divide our work in below steps:
   File Name: ATM-Transaction.py
   
   ### Open putty and submit pyspark code here.
-  ####### Configure it with private key file.
-  ####### EMR will be launched.
-  ####### Create EMR cluster.
-  ####### Run spark submit cmd to created cluster.
+  ###### Configure it with private key file.
+  ###### EMR will be launched.
+  ###### Create EMR cluster.
+  ###### Run spark submit cmd to created cluster.
 
 ## 3. Copying data from S3 to AWS Redshift through AWS Glue. 
