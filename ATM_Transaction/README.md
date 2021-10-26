@@ -40,3 +40,4 @@ As per the above pipeline, we can divide our work in below steps:
   ###### Run spark submit cmd to created cluster.
 
 ## 3. Copying data from S3 to AWS Redshift through AWS Glue. 
+### Creating table in Redshift.
