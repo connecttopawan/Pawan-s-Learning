@@ -28,7 +28,8 @@ As per the above pipeline, we can divide our work in below steps:
   ### Open putty and submit pyspark code here.
   ###### Configure it with private key file.
   ###### EMR will be launched.
-  ###### Create EMR cluster.
+  ###### Create EMR cluster:
+    This can be created from management console or CLI. Here we are using CLI.
   ###### Run spark submit cmd to created cluster.
 
 ## 3. Copying data from S3 to AWS Redshift through AWS Glue. 
