@@ -30,6 +30,13 @@ As per the above pipeline, we can divide our work in below steps:
   ###### EMR will be launched.
   ###### Create EMR cluster:
     This can be created from management console or CLI. Here we are using CLI.
+    We need to below arguments to create cluster.
+      --name: Provide name to the cluster, It is an identifier.
+      --release-label: It specifies which version of EMR to use. It is recomended to use latest version.
+      --applications: It tells EMR which type of application we will be using on our cluster. To create a Spark cluster, use Name=Spark.
+      --instance-type: It specifies which type of EC2 instance you want to use for our cluster.
+      --bootstrap-actions: It allows us to specify what packages we want to be installed on all of your cluster’s nodes. This step is only necessary if your application uses non-builtin Python packages other than pyspark. To use such packages, create our emr_bootstrap.sh file using the example below as a template, and add it to your S3 bucket. Include --bootstrap-actions Path=s3://your-bucket/emr_bootstrap.sh in the aws emr create-cluster command.
+      --steps: tells our cluster what to do after the cluster starts. Be sure to replace s3://your-bucket/pyspark_job.py in the --steps argument with the S3 path to your Spark application. We can also put your application code on S3 and pass an S3 path.
   ###### Run spark submit cmd to created cluster.
 
 ## 3. Copying data from S3 to AWS Redshift through AWS Glue. 
