@@ -1,1 +1,6 @@
-
+CREATE TABLE deep_dive (
+		aid INT
+		,loc CHAR(3)
+		,dt DATE
+		) SORTKEY (dt, loc)
+    DISTSTYLE EVEN;
