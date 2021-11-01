@@ -1,0 +1,71 @@
+MongoD: Stands for "Mongo Deamon". It is basically host process for the database.
+Mongo: It is a command line interface that connects to a specific instance of mongoD.
+
+--> SQL and MongoDB terminology comparison
+	Database ---> Database
+	Tables ---> Collection (It is Javascript object)
+	Row ---> Document (BSON)
+	Column ---> Field
+	
+--> Handy Commands:
+	-> View all databases:	show dbs
+	-> Create a new or switch database:	use <db_name>
+	-> View current database:	db
+	-> Drop database:	db.dropDatabase()
+	-> View all collections:	show collections
+	-> Create collection:	db.createCollection('<collection_name>')
+	-> Delete collection:	db.<collection_name>.drop()
+	-> Show all documents in a collection: db.<collection_name>.find() 
+										db.<collection_name>.find().pretty()
+										db.<collection_name>.find({lang: 'Python'})
+	-> Insert one document:	db.<collection_name>.insert({
+										'name': 'Pawan',
+										'lang': 'Python'
+										})
+	-> Insert multiple document: db.<collection_name>.insertMany({
+										'name': 'Pawan',
+										'lang': 'Python',
+										'age': 30
+										},
+										{
+										'name': 'Pawan',
+										'lang': 'Python'
+										},
+										{
+										'name': 'Pawan',
+										'lang': 'Python'
+										})
+	-> Limit the number in output: db.<collection_name>.find({lang: 'Python'}).limit(5)
+	-> Count Number of rows: db.<collection_name>.find({lang: 'Python'}).count()
+	-> Sort the output: db.<collection_name>.find().sort({name:1})  //Sort in accending order
+						db.<collection_name>.find().sort({name:-1}) //Sort in accending order
+	-> Find the first row: db.<collection_name>.findOne({lang: 'Python'})
+	-> Update a row: db.<collection_name>.update({name: 'Pawan'},
+						{'name': 'Pawan',
+							'lang': 'Python',
+							'age': 31
+							'Status': 'Married'
+						})
+	-> Upsert a row: db.<collection_name>.update({name: 'Pawan'},
+						{'name': 'Pawan',
+							'lang': 'Python',
+							'age': 31
+							'Status': 'Married'
+						}, {upsert: true})
+	-> Increment a value: db.<collection_name>.update({name: 'Pawan'},
+						{$inc:{
+							age: 2
+						}})
+	-> Rename a column name: db.<collection_name>.update({name: 'Pawan'},
+						{$rename:{
+							Name: 'First_Name'
+						}})
+	-> Delete a row: db.<collection_name.remove({name: 'Pawan'})
+	-> Less than/Greater than/ Less than or Eq/Greater than or Eq:
+			db.<collection_name>.find({age: {$lt: 30}})
+			db.<collection_name>.find({age: {$lte: 30}})
+			db.<collection_name>.find({age: {$gt: 30}})
+			db.<collection_name>.find({age: {$gte: 30}})
+	-> Group By and count: db.<collection_name>.aggregate({"$group" : {_id: "$<col_name>", count:{$sum: 1}}}
+						db.<collection_name>.aggregate({"$group" : {_id: {<col_name>: "$<col_name>", <col_name>: "$<col_name>"}, count:{$sum: 1}}})
+						db.<collection_name>.aggregate({"$group" : {_id: {<col_name>: "$<col_name>", <col_name>: "$<col_name>"}, count:{$sum: 1}}},{$sort:{"count": 1}})

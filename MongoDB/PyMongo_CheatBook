@@ -1,0 +1,75 @@
+import pymongo
+
+if __name__=="__main__":
+    print("Welcome to Pymongo")
+    # Connectting to MongoDB
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    print("Client : " client)
+
+# Database level queries    
+    # Creating database
+    db=client["testdb"]
+    # Creating collection
+    collection=db["mycollection"]
+    
+    # show all databases
+    all_dbs=client.list_database_name()
+    print(all_dbs)
+    
+# Insert data to MongoDB Collections   
+    # InsertOne
+    data={"name": "Pawan Kumar", "marks": 60}
+    collection.insert_one(data)
+    
+    #InsertMany
+    many_data=[
+        {"name": "Pawan Kumar", "marks": 60},
+        {"name": "Akanksha", "marks": 80},
+        {"name": "Saloni", "marks": 50}
+    ]
+    collection.insert_many(many_data)
+    
+# Finding Data from MongoDB
+    # FindOne
+    one=collection.find_one({"name":"Pawan"})
+    print(one)
+    
+    # FindAll
+    all=collection.find({"name":"Pawan"})
+    for item in all:
+        print(item)
+        
+    # Select specific columns
+    all_spec=collection.find({"name":"Pawan Kumar"},{"name":1})
+    for item in all_spec:
+        print(item) # This will show _id and name.
+    all_spec=collection.find({"name":"Pawan Kumar"},{"name":1,"_id":0})
+    for item in all_spec:
+        print(item) # This will only name.
+    all_spec=collection.find({"name":"Pawan Kumar"},{"name":0})
+    for item in all_spec:
+        print(item) # This will show all coulumns except name.
+    print(all_spec.count())
+
+# Update Operation
+    prev={"name": "Pawan Kumar"}
+    next={"$set": {"Address": "Noida"}}
+    # Update One
+    collection.update_one(prev,next)
+    # Update Many
+    collection.update_many(prev,next)
+    
+# Delete Operation
+    rec={"name": "Pawan Kumar"}
+    # Delete One
+    collection.delete_one(rec)
+    collection.find()
+    # Delete many
+    collection.delete_many(rec)
+    collection.find()
+    
+# Conditional Operation
+    all_spec=collection.find({"name":"Pawan Kumar","marks": {"$lte" : 80}})
+    for item in all_spec:
+        print(item)
+    
