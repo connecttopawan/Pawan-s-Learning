@@ -73,3 +73,12 @@ if __name__=="__main__":
     for item in all_spec:
         print(item)
     
+# Inserting file
+    with open('data.csv', 'r') as csvfile:
+        header = [ "show_id", "director"]
+        reader = csv.reader(csvfile)
+        for row in reader:
+            doc={}
+            for n in range(0,len(header)):
+                doc[header[n]] = row[n]
+       collection.insert(doc)

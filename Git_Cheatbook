@@ -1,0 +1,28 @@
+Github
+#################
+--> Introduction:
+	--> It is a distributed version control system.
+	--> Files can be easily recovered.
+	--> Can be find who has introduces the issue and when.
+	--> Rollback to previously working state.
+	
+--> Git Configuration:
+	--> git config --global user.name "pawan"
+	--> git config --global user.email "connecttopawan@gmail.com"
+
+--> git init : Initialize git repository
+	git status: To track files and folder
+	git add --a : To move all the files to staging area.
+	git commit : To save changes to repository.
+	git log: To check past commit.
+	git log -p : Will show past commit with what changes made.
+	git clone: To copy repository
+	git diff: Compare staging area with working area.
+	git diff --staged: Compare staging area with last commit.
+	git rm <file_name> : To delete file from git terminal.
+	git mv <file_name> <new_name> : To rename a file.
+	git rm --cached <file_name> : To untrack a tracked file.
+	
+--> How to ignore files from git status?
+	i. Create .gitignore named file.
+	ii. Mention files and folder to be ignored.

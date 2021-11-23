@@ -1,0 +1,63 @@
+# Java Basic Questions
+##############################
+--> Is java a pure object oriented language?
+	No, because java supports primitive data types - byte, boolean, char, short, int, float, long, and double. If we compare it with scala then scala have only two types of variables viz. val & var. The above mentioned primitive data types are treated as function so to use it we have to it's object. So scala is example of pure object oreinted language.
+	
+--> Does java support pointer?
+	No. Pointer provide direct access memory which can be manipulated so leads to the compromise with security. Java makes use of references as these cannot be manipulated. 
+	
+--> Instance variable vs local variable.
+	Instance variables declared outside the methods and inside the class. It is stored to stack part of memory.
+	Local variables present within a block, function, or constructor and can be accessed only inside them. It is stored to heap part of memory.
+	
+--> What is the difference between “==” and “equals(…)” in comparing Java String objects?
+	“==” (i.e. shallow comparison), you are actually comparing the two object references to see if they point to the same object. When you use “equals(…)”, which is a “deep comparison” that compares the actual string values.
+		public class StringEquals {
+			public static void main(String[ ] args) {
+			String s1 = "Hello";
+			String s2 = new String(s1);
+			String s3 = "Hello";
+			
+			System.out.println(s1 + " equals " + s2 + "--> " +  s1.equals(s2)); //true
+			
+			System.out.println(s1 + " == " + s2 + " --> " + (s1 == s2)); //false
+			System.out.println(s1 + " == " + s3 + " -->" + (s1 == s3)); //true
+			}
+		}
+
+--> What purpose does the key words final and finally?
+	‘final‘ makes a variable reference not changeable, makes a method not overridable, and makes a class not inheritable.
+	‘finally‘ is used in a try/catch statement to almost always execute the code. Even when an exception is thrown, the finally block is executed.
+	
+--> Can you describe “method overloading” versus “method overriding”?
+	Overloading deals with multiple methods in the same class with the same name but different method signatures. This happens at compile-time. This is also called compile-time polymorphism because the compiler must decide which method to run based on the data types of the arguments.
+	Overriding deals with two methods, one in the parent class and the other one in the child class and has the same name and same signatures.
+	This happens at runtime. This is also called runtime polymorphism because the compiler does not and cannot know which method to call.
+	
+--> When can you use super keyword?
+	Accessing data members of parent class when the member names of the class and its child subclasses are same.
+	To call the default and parameterized constructor of the parent class inside the child class.
+	Accessing the parent class methods when the child classes have overridden them.
+	
+--> Can the static methods be overloaded and overridden?
+	Yes! There can be two or more static methods in a class with the same name but differing input parameters.
+	No overriding of static method is not possible.
+
+--> How would you differentiate between a String, StringBuffer, and a StringBuilder?
+	For string, the String pool serves as the storage area. For StringBuilder and StringBuffer, heap memory is the storage area.
+	A String is immutable, whereas both the StringBuilder and StringBuffer are mutable.
+	It is quite slow to work with a String. However, StringBuilder is the fastest in performing operations. The speed of a StringBuffer is more than a String and less than a StringBuilder.
+	In the case of a threaded environment, StringBuilder and StringBuffer are used whereas a String is not used.
+	
+--> What is static keyword?
+	Static Variables: When a variable is declared as static, then a single copy of variable is created and shared among all objects at class level. Static variables are, essentially, global variables. All instances of the class share the same static variable.
+	Static Method: Any static member can be accessed before any objects of its class are created, and without reference to any object. They can only directly call other static methods. They cannot refer to this or super in any way.
+
+--> Explain thread.
+	Threads allows a program to operate more efficiently by doing multiple things at the same time. It can be used to perform complicated tasks in the background without interrupting the main program.
+	JVM create two types of thread -- main thread and background thread.
+	Main thread, which is created as part of invoking the main(…) method. Background thread perform GC.
+	There are two ways to create a thread.
+	i.	It can be created by extending the Thread class and overriding its run() method.
+	ii. Another way to create a thread is to implement the Runnable interface.
+	
