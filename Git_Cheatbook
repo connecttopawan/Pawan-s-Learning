@@ -26,3 +26,5 @@ Github
 --> How to ignore files from git status?
 	i. Create .gitignore named file.
 	ii. Mention files and folder to be ignored.
+	
+--> Handle Conflicts
