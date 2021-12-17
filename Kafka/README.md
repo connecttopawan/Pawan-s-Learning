@@ -9,3 +9,7 @@
 
 ### Ques3:
 #####     Kafka consumer that will read data from multiple topics.
+
+### Ques4:
+#####     Read data from RDBMS through Kafka Connect and load to queue.
+#####     Spark Dataframe to read from queue.
