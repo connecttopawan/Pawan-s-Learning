@@ -1,0 +1,15 @@
+# Read data from RDBMS through Kafka Connect.
+
+#connect-file-source.properties
+
+name= JdbcSourceConnector
+tasks.max=1
+connector.class=io.confluent.connect.jdbc.JdbcSourceConnector
+connection.url= jdbc:mysql://mysql:3306/test
+connection.user=connect_user
+connection.password=connect_password
+table.whitelist=db.table
+mode=bulk
+cleanup.policy=NONE
+behavior.on.error=IGNORE
+kafka.topic=JdbcTopic
