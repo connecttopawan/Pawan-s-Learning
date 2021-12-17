@@ -8,3 +8,4 @@
 #####     Consumer to check whether the data was written to the topic or not.
 
 ### Ques3:
+#####     Kafka consumer that will read data from multiple topics.
