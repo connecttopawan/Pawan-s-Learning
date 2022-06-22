@@ -1,0 +1,70 @@
+##generatePyspark.py
+
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jun 19 18:28:17 2022
+
+@author: vinayr4
+"""
+
+import pandas as pd
+import structFields
+import sqlQuery
+
+#sparkSession='spark = SparkSession\ \n.builder\ \n.appName("rightOfDatalakeDemo")\ \n.getOrCreate()'
+importStmt="""
+from pyspark import SparkFiles
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType, TimestampType
+"""
+
+sparkSession="""spark = SparkSession\
+.builder\
+.appName("rightOfDatalakeDemo")\
+.getOrCreate()"""
+
+file1 = open("rightOfDatalakeDemo.py","w")
+file1.write(importStmt)
+file1.close()
+
+file1 = open("rightOfDatalakeDemo.py","a")
+file1.write(sparkSession)
+file1.close()
+
+
+df_etl=pd.read_csv(r"C:\Users\pawank4\OneDrive - kochind.com\New_Folder\ETL.csv", header=0)
+df_dm=pd.read_csv(r"C:\Users\pawank4\OneDrive - kochind.com\New_Folder\DataModel.csv", header=0)
+df_s3=pd.read_csv(r"C:\Users\pawank4\OneDrive - kochind.com\New_Folder\TablePath.csv", header=0)
+tableList=df_etl["InputTable"].unique()
+sqlStmt=sqlQuery.generateSQL('rightOfDatalakeDemo')
+
+BUCKET="gp-procurement-dw-prod-rabit"
+records=df_dm.to_records()
+result = list(records)
+#print(result)
+pathList=[]
+
+for table in tableList:
+    schemaName=structFields.generateSchema(table)
+    #print(schemaName)
+    #print(table)
+    pathList=df_s3.loc[df_s3['Table'] == table, 's3Path'].tolist()
+    #print(pathList[0])
+    df_name="df_"+table
+    createDF=df_name+'= spark.read.format("csv")\\'+ '\n'+'.option("header", "false")\\'+ '\n'+'.option("delimiter","^")\\'+ '\n'+'.schema('+schemaName+')\\'+ '\n'+'.load(r'+"'"+pathList[0]+"')"
+    #print(createDF)
+    createTempView=df_name+'.createOrReplaceTempView("'+table+'")'
+    file1 = open("rightOfDatalakeDemo.py","a")
+    file1.write("\n\n")
+    ##file1.write("schemaName=structFields.generateSchema(table)\n\n")
+    ##file1.write("pathList=df_s3.loc[df_s3['Table'] == table, 's3Path'].tolist()\n\n")
+    file1.write(createDF)
+    file1.write("\n\n")
+    file1.write(createTempView)
+    file1.close()
+
+sparkSQL='spark.sql("""'+sqlStmt+'""").show(10)'
+file1 = open("rightOfDatalakeDemo.py","a")    
+file1.write("\n\n")
+file1.write(sparkSQL)
+file1.close()  
